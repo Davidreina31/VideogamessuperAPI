@@ -6,7 +6,7 @@ namespace DAL.Interface
 {
     public interface IAnswerRepository
     {
-        IEnumerable<Answer> Get(int id);
+        IEnumerable<Answer> GetByQuestionId(int id);
 
         void Insert(Answer answer);
 

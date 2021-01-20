@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace LOCAL.Models
 {
     public class Question
@@ -14,5 +16,8 @@ namespace LOCAL.Models
         public int Plateform_VideoGameId { get; set; }
 
         public User User { get; set; }
+
+        public IEnumerable<Answer> AnswersList { get; set; }
+
     }
 }

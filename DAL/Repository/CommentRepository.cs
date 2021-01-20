@@ -15,7 +15,7 @@ namespace DAL.Repository
         }
 
 
-        public IEnumerable<Comment> Get(int id)
+        public IEnumerable<Comment> GetByVideoGameId(int id)
         {
             using (_connection)
             {

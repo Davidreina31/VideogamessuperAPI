@@ -17,9 +17,9 @@ namespace LOCAL.Services
             _answerRepo = answerRepo;
         }
 
-        public IEnumerable<Answer> Get(int id)
+        public IEnumerable<Answer> GetByQuestionId(int id)
         {
-            return _answerRepo.Get(id).Select(x => x.toLocal());
+            return _answerRepo.GetByQuestionId(id).Select(x => x.toLocal());
         }
 
         public void Insert(Answer answer)

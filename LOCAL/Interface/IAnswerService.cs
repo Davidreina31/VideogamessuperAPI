@@ -6,7 +6,7 @@ namespace LOCAL.Interface
 {
     public interface IAnswerService
     {
-        IEnumerable<Answer> Get(int id);
+        IEnumerable<Answer> GetByQuestionId(int id);
 
         void Insert(Answer answer);
 

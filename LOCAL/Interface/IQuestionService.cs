@@ -8,7 +8,9 @@ namespace LOCAL.Interface
     {
         //Question GetOne(int id);
 
-        IEnumerable<Question> Get(int id);
+        IEnumerable<Question> GetByVideoGameId(int id);
+
+        Question GetAnswersByQuestionId(int id);
 
         void Insert(Question question);
 

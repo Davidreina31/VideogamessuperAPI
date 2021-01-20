@@ -20,18 +20,18 @@ namespace VIDEOGAMESSUPER.Controllers
             _service = service;
         }
 
-        // GET: api/values
-        //[HttpGet]
-        //public IActionResult GetOne(int id)
-        //{
-        //    return Ok(_service.GetOne(id));
-        //}
+        //GET: api/values
+       [HttpGet]
+        public IActionResult GetOne(int id)
+        {
+            return Ok(_service.GetAnswersByQuestionId(id));
+        }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(_service.Get(id));
+            return Ok(_service.GetByVideoGameId(id));
         }
 
         // POST api/values

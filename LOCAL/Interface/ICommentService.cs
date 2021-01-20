@@ -6,7 +6,7 @@ namespace LOCAL.Interface
 {
     public interface ICommentService
     {
-        IEnumerable<Comment> Get(int id);
+        IEnumerable<Comment> GetByVideoGameId(int id);
 
         void Insert(Comment comment);
 

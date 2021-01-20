@@ -15,7 +15,7 @@ namespace DAL.Repository
         }
 
 
-        public IEnumerable<Answer> Get(int id)
+        public IEnumerable<Answer> GetByQuestionId(int id)
         {
             using (_connection)
             {
@@ -23,7 +23,8 @@ namespace DAL.Repository
 
                 using(SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT AnswerId, AnswerText, AnswerDate, UserId, QuestionId FROM ANSWER WHERE QuestionId=@id";
+                    cmd.CommandText = "SELECT AnswerId, AnswerText, AnswerDate," +
+                        " UserId, QuestionId FROM ANSWER WHERE QuestionId=@id";
 
                     cmd.Parameters.AddWithValue("id", id);
 

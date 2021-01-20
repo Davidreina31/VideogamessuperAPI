@@ -17,9 +17,9 @@ namespace LOCAL.Services
             _commentRepo = commentRepo;
         }
 
-        public IEnumerable<Comment> Get(int id)
+        public IEnumerable<Comment> GetByVideoGameId(int id)
         {
-            return _commentRepo.Get(id).Select(x => x.toLocal());
+            return _commentRepo.GetByVideoGameId(id).Select(x => x.toLocal());
         }
 
         public void Insert(Comment comment)

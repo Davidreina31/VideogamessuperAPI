@@ -8,9 +8,11 @@ namespace DAL.Interface
     {
         //Question GetOne(int id);
 
-        IEnumerable<Question> Get(int id);
+        IEnumerable<Question> GetByVideoGameId(int id);
 
-        User GetUser(int id);
+        Question GetOne(int id);
+
+        //User GetUser(int id);
 
         void Insert(Question question);
 

@@ -6,7 +6,7 @@ namespace DAL.Interface
 {
     public interface ICommentRepository
     {
-        IEnumerable<Comment> Get(int id);
+        IEnumerable<Comment> GetByVideoGameId(int id);
 
         void Insert(Comment comment);
 

@@ -24,7 +24,7 @@ namespace VIDEOGAMESSUPER.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(_service.Get(id));
+            return Ok(_service.GetByVideoGameId(id));
         }
 
         // GET api/values/5

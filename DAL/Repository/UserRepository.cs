@@ -60,9 +60,8 @@ namespace DAL.Repository
 
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT u.UserId, u.UserName, u.Email, u.PasswordHash, u.[Admin]," +
-                        " u.DeletedDate, uv.Plateform_VideoGameId FROM [USER] u LEFT JOIN USER_VIDEOGAME uv" +
-                        " on u.UserId=uv.UserId WHERE u.UserId = @id";
+                    cmd.CommandText = "SELECT UserId, UserName, Email, PasswordHash, [Admin]," +
+                        " DeletedDate FROM [USER] WHERE UserId=@id";
 
                     cmd.Parameters.AddWithValue("id", id);
 
