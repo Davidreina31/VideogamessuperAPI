@@ -10,26 +10,27 @@ using Microsoft.AspNetCore.Mvc;
 namespace VIDEOGAMESSUPER.Controllers
 {
     [Route("api/[controller]")]
-    public class Plateform_VideoGameController : Controller
+    public class VideoGameController : Controller
     {
-        private IPlateform_VideoGameService _plateform_VideoGameservice;
+        private IVideoGameService _service;
 
-        public Plateform_VideoGameController(IPlateform_VideoGameService plateform_VideoGameService)
+        public VideoGameController(IVideoGameService service)
         {
-            _plateform_VideoGameservice = plateform_VideoGameService;
+            _service = service;
         }
+
         // GET: api/values
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_plateform_VideoGameservice.Get());
+            return Ok(_service.Get());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(_plateform_VideoGameservice.Get(id));
+            return Ok(_service.Get(id));
         }
 
         //// POST api/values
