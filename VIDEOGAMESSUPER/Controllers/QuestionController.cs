@@ -21,11 +21,11 @@ namespace VIDEOGAMESSUPER.Controllers
         }
 
         //GET: api/values
-       [HttpGet]
-        public IActionResult GetOne(int id)
-        {
-            return Ok(_service.GetAnswersByQuestionId(id));
-        }
+       //[HttpGet]
+       // public IActionResult GetOne(int id)
+       // {
+       //     return Ok(_service.GetAnswersByQuestionId(id));
+       // }
 
         // GET api/values/5
         [HttpGet("{id}")]

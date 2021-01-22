@@ -11,7 +11,7 @@ namespace LOCAL.Tools
                 QuestionText = question.QuestionText,
                 QuestionDate = question.QuestionDate,
                 UserId = question.UserId,
-                Plateform_VideoGameId = question.Plateform_VideoGameId
+                VideoGameId = question.VideoGameId
             };
         }
 
@@ -23,7 +23,7 @@ namespace LOCAL.Tools
                 QuestionText = question.QuestionText,
                 QuestionDate = question.QuestionDate,
                 UserId = question.UserId,
-                Plateform_VideoGameId = question.Plateform_VideoGameId
+                VideoGameId = question.VideoGameId
 
             };
         }

@@ -11,12 +11,10 @@ namespace LOCAL.Services
     public class QuestionService : IQuestionService
     {
         private IQuestionRepository _questionRepo;
-        private IAnswerService _answerService;
 
         public QuestionService(IQuestionRepository questionRepo, IAnswerService answerService)
         {
             _questionRepo = questionRepo;
-            _answerService = answerService;
         }
 
 
@@ -39,15 +37,6 @@ namespace LOCAL.Services
              
         }
 
-        public Question GetAnswersByQuestionId(int id)
-        {
-            Question question = new Question();
-
-            question = _questionRepo.GetOne(id).toLocal();
-            question.AnswersList = _answerService.GetByQuestionId(id);
-
-            return question;
-        }
 
         public void Insert(Question question)
         {

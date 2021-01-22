@@ -38,8 +38,16 @@ namespace VIDEOGAMESSUPER.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] User user)
         {
-            _service.Insert(user);
-            return Ok();
+            try
+            {
+                _service.Insert(user);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+            
         }
 
         // PUT api/values/5

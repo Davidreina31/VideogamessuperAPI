@@ -23,11 +23,8 @@ namespace DAL.Repository
 
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT c.CommentId, c.Note, c.CommentText," +
-                        " c.CommentDate, c.UserId, c.Plateform_VideoGameId, vg.VideoGameId," +
-                        "vg.Name FROM COMMENT c JOIN PLATEFORM_VIDEOGAME pl " +
-                        "ON c.Plateform_VideoGameId = pl.Id JOIN VIDEOGAME vg " +
-                        "ON pl.VideoGameId = vg.VideoGameId WHERE vg.VideoGameId=@id";
+                    cmd.CommandText = "SELECT CommentId, Note, CommentText, CommentDate," +
+                        " UserId, VideoGameId FROM COMMENT WHERE VideoGameId=@id"; 
 
                     cmd.Parameters.AddWithValue("id", id);
 
@@ -42,7 +39,7 @@ namespace DAL.Repository
                                 CommentText = (string) reader["CommentText"],
                                 CommentDate = (DateTime) reader["CommentDate"],
                                 UserId = (int) reader["UserId"],
-                                Plateform_VideoGameId = (int) reader ["Plateform_VideoGameId"],
+                                VideoGameId = (int) reader ["VideoGameId"],
                                 
                             };
                         }
@@ -61,14 +58,14 @@ namespace DAL.Repository
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
                     cmd.CommandText = "INSERT INTO COMMENT (Note, CommentText, CommentDate," +
-                        " UserId, Plateform_VideoGameId) OUTPUT" +
-                        " inserted.CommentId VALUES (@note, @text, @date, @UId, @PlVgId)";
+                        " UserId, VideoGameId) OUTPUT" +
+                        " inserted.CommentId VALUES (@note, @text, @date, @UId, @VgId)";
 
                     cmd.Parameters.AddWithValue("note", comment.Note);
                     cmd.Parameters.AddWithValue("text", comment.CommentText);
                     cmd.Parameters.AddWithValue("date", DateTime.Now);
                     cmd.Parameters.AddWithValue("UId", comment.UserId);
-                    cmd.Parameters.AddWithValue("PlVgId", comment.Plateform_VideoGameId);
+                    cmd.Parameters.AddWithValue("VgId", comment.VideoGameId);
 
                     int id = (int)cmd.ExecuteScalar();
                 }
@@ -84,14 +81,14 @@ namespace DAL.Repository
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
                     cmd.CommandText = "UPDATE COMMENT SET Note=@note, CommentText=@text," +
-                        " CommentDate=@date, UserId=@UId, Plateform_VideoGameId=@PlVgId" +
+                        " CommentDate=@date, UserId=@UId, VideoGameId=@VgId" +
                         " WHERE CommentId=@id";
 
                     cmd.Parameters.AddWithValue("note", comment.Note);
                     cmd.Parameters.AddWithValue("text", comment.CommentText);
                     cmd.Parameters.AddWithValue("date", DateTime.Now);
                     cmd.Parameters.AddWithValue("UId", comment.UserId);
-                    cmd.Parameters.AddWithValue("PlVgId", comment.Plateform_VideoGameId);
+                    cmd.Parameters.AddWithValue("VgId", comment.VideoGameId);
                     cmd.Parameters.AddWithValue("id", comment.CommentId);
 
                     cmd.ExecuteNonQuery();

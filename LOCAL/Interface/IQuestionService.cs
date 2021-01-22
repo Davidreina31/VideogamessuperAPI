@@ -10,8 +10,6 @@ namespace LOCAL.Interface
 
         IEnumerable<Question> GetByVideoGameId(int id);
 
-        Question GetAnswersByQuestionId(int id);
-
         void Insert(Question question);
 
         void Delete(int id);

@@ -13,7 +13,7 @@ namespace DAL.Models
 
         public int UserId { get; set; }
 
-        public int Plateform_VideoGameId { get; set; }
+        public int VideoGameId { get; set; }
 
         
     }

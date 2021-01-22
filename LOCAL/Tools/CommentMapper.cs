@@ -12,7 +12,7 @@ namespace LOCAL.Tools
                 CommentText = comment.CommentText,
                 CommentDate = comment.CommentDate,
                 UserId = comment.UserId,
-                Plateform_VideoGameId = comment.Plateform_VideoGameId
+                VideoGameId = comment.VideoGameId
             };
         }
 
@@ -25,7 +25,7 @@ namespace LOCAL.Tools
                 CommentText = comment.CommentText,
                 CommentDate = comment.CommentDate,
                 UserId = comment.UserId,
-                Plateform_VideoGameId = comment.Plateform_VideoGameId
+                VideoGameId = comment.VideoGameId
 
             };
         }

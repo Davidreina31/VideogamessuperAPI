@@ -54,11 +54,8 @@ namespace DAL.Repository
 
                 using (SqlCommand cmd = c.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT q.QuestionId, q.QuestionText, q.QuestionDate," +
-                        " q.UserId, q.Plateform_VideoGameId FROM QUESTION Q JOIN PLATEFORM_VIDEOGAME PL" +
-                        " ON Q.Plateform_VideoGameId = PL.Id JOIN VIDEOGAME VG " +
-                        "ON pl.VideoGameId = vg.VideoGameId" +
-                        " WHERE vg.VideoGameId=@id";
+                    cmd.CommandText = "SELECT QuestionId, QuestionText, QuestionDate," +
+                        " UserId, VideoGameId FROM QUESTION WHERE VideoGameId=@id";
 
                     cmd.Parameters.AddWithValue("id", id);
 
@@ -72,7 +69,7 @@ namespace DAL.Repository
                                 QuestionText = (string)reader["QuestionText"],
                                 QuestionDate = (DateTime)reader["QuestionDate"],
                                 UserId = (int)reader["UserId"],
-                                Plateform_VideoGameId = (int)reader["Plateform_VideoGameId"]
+                                VideoGameId = (int)reader["VideoGameId"]
                             };
                         }
                     }
@@ -90,7 +87,7 @@ namespace DAL.Repository
             using(SqlCommand cmd = _connection.CreateCommand())
             {
                 cmd.CommandText = "SELECT QuestionId, QuestionText, QuestionDate, UserId," +
-                    " Plateform_VideoGameId FROM QUESTION WHERE QuestionId=@id";
+                    " VideoGameId FROM QUESTION WHERE QuestionId=@id";
 
                 cmd.Parameters.AddWithValue("id", id);
 
@@ -102,7 +99,7 @@ namespace DAL.Repository
                         question.QuestionText = (string)reader["QuestionText"];
                         question.QuestionDate = (DateTime)reader["QuestionDate"];
                         question.UserId = (int)reader["UserId"];
-                        question.Plateform_VideoGameId = (int)reader["Plateform_VideoGameId"];
+                        question.VideoGameId = (int)reader["VideoGameId"];
                     }
 
                     return question;
@@ -120,13 +117,13 @@ namespace DAL.Repository
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
                     cmd.CommandText = "INSERT INTO QUESTION (QuestionText, QuestionDate," +
-                        " UserId, Plateform_VideoGameId) OUTPUT inserted.QuestionId" +
-                        " VALUES (@text, @date, @UId, @PlVgId)";
+                        " UserId, VideoGameId) OUTPUT inserted.QuestionId" +
+                        " VALUES (@text, @date, @UId, @VgId)";
 
                     cmd.Parameters.AddWithValue("text", question.QuestionText);
                     cmd.Parameters.AddWithValue("date", DateTime.Now);
                     cmd.Parameters.AddWithValue("UId", question.UserId);
-                    cmd.Parameters.AddWithValue("PlVgId", question.Plateform_VideoGameId);
+                    cmd.Parameters.AddWithValue("VgId", question.VideoGameId);
 
 
                     int id = (int)cmd.ExecuteScalar();
@@ -142,7 +139,8 @@ namespace DAL.Repository
 
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM QUESTION WHERE QuestionId=@id";
+                    cmd.CommandText = "DELETE FROM ANSWER WHERE QuestionId=@id ";
+                    cmd.CommandText += "DELETE FROM QUESTION WHERE QuestionId=@id";
 
                     cmd.Parameters.AddWithValue("id", id);
 

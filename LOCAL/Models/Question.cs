@@ -13,11 +13,7 @@ namespace LOCAL.Models
 
         public int UserId { get; set; }
 
-        public int Plateform_VideoGameId { get; set; }
-
-        public User User { get; set; }
-
-        public IEnumerable<Answer> AnswersList { get; set; }
+        public int VideoGameId { get; set; }
 
     }
 }
