@@ -48,6 +48,38 @@ namespace DAL.Repository
             }
         }
 
+        public Comment GetOne(int id)
+        {
+            Comment comment = new Comment();
+            using (_connection)
+            {
+                _connection.Open();
+
+                using(SqlCommand cmd = _connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT CommentId, Note, CommentText, CommentDate," +
+                        " UserId, VideoGameId FROM COMMENT WHERE CommentId=@id";
+
+                    cmd.Parameters.AddWithValue("id", id);
+
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            comment.CommentId = (int)reader["CommentId"];
+                            comment.Note = (int)reader["Note"];
+                            comment.CommentText = (string)reader["CommentText"];
+                            comment.CommentDate = (DateTime)reader["CommentDate"];
+                            comment.UserId = (int)reader["UserId"];
+                            comment.VideoGameId = (int)reader["VideoGameId"];
+                        }
+
+                        return comment;
+                    }
+                }
+            }
+        }
+
 
         public void Insert(Comment comment)
         {
@@ -104,7 +136,8 @@ namespace DAL.Repository
 
                 using(SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM COMMENT WHERE CommentId=@id";
+                    cmd.CommandText = "DELETE FROM REPORT WHERE CommentId=@id ";
+                    cmd.CommandText += "DELETE FROM COMMENT WHERE CommentId=@id";
 
                     cmd.Parameters.AddWithValue("id", id);
 

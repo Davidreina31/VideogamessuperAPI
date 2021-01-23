@@ -28,11 +28,11 @@ namespace VIDEOGAMESSUPER.Controllers
         }
 
         // GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet]
+        public IActionResult GetOne(int id)
+        {
+            return Ok(_service.GetOne(id));
+        }
 
         // POST api/values
         [HttpPost]

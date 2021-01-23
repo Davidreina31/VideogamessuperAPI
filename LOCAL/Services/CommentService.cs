@@ -22,6 +22,11 @@ namespace LOCAL.Services
             return _commentRepo.GetByVideoGameId(id).Select(x => x.toLocal());
         }
 
+        public Comment GetOne(int id)
+        {
+            return _commentRepo.GetOne(id).toLocal();
+        }
+
         public void Insert(Comment comment)
         {
             _commentRepo.Insert(comment.toDal());

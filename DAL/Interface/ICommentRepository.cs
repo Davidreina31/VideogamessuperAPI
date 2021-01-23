@@ -8,6 +8,8 @@ namespace DAL.Interface
     {
         IEnumerable<Comment> GetByVideoGameId(int id);
 
+        Comment GetOne(int id);
+
         void Insert(Comment comment);
 
         void Update(Comment comment);
