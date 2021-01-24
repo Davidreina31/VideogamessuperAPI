@@ -9,7 +9,7 @@ namespace LOCAL.Models
 
         public int UserId { get; set; }
 
-        public int Plateform_VideoGame_Id { get; set; }
+        public int VideoGameId { get; set; }
 
         //public string UserName { get; set; }
 

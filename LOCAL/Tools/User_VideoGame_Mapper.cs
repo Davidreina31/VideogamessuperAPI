@@ -9,7 +9,7 @@ namespace LOCAL.Tools
             {
                 User_VideoGame_id = user_VideoGame.User_VideoGame_id,
                 UserId = user_VideoGame.UserId,
-                Plateform_VideoGame_Id = user_VideoGame.Plateform_VideoGame_Id,
+                VideoGameId = user_VideoGame.VideoGameId,
                 //UserName = user_VideoGame.UserName,
                 //VideoGameName = user_VideoGame.VideoGameName,
                 //PlateformName = user_VideoGame.PlateformName,
@@ -24,7 +24,7 @@ namespace LOCAL.Tools
             {
                 User_VideoGame_id = user_VideoGame.User_VideoGame_id,
                 UserId = user_VideoGame.UserId,
-                Plateform_VideoGame_Id = user_VideoGame.Plateform_VideoGame_Id,
+                VideoGameId = user_VideoGame.VideoGameId,
                 //UserName = user_VideoGame.UserName,
                 //VideoGameName = user_VideoGame.VideoGameName,
                 //PlateformName = user_VideoGame.PlateformName,

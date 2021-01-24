@@ -24,13 +24,20 @@ namespace LOCAL.Services
             return _UvRepo.Get().Select(x => x.toLocal());
         }
 
-        public User GetVideoGameByUserId(int id)
+        public IEnumerable<User_VideoGame> GetOne(int id)
         {
-            User user = new User();
+            return _UvRepo.GetOne(id).Select(x => x.toLocal());
+        }
 
-            user = _userService.Get(id);
-            user.videoGamesList = _UvRepo.GetVideoGameByUserId(id).Select(x => x.toLocal());
-            return user;
+        public IEnumerable<VideoGame> GetVideoGameByUserId(int id)
+        {
+            return _UvRepo.GetVideoGameByUserId(id).Select(x => x.toLocal());
+
+            //User user = new User();
+
+            //user = _userService.Get(id);
+            //user.videoGamesList = _UvRepo.GetVideoGameByUserId(id).Select(x => x.toLocal());
+            //return user;
 
         }
 

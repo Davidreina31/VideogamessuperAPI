@@ -29,7 +29,7 @@ namespace DAL.Repository
                     //    " PLATEFORM pl ON PlVg.PlateformId = pl.PlateformId JOIN" +
                     //    " VIDEOGAME vg ON PlVg.VideoGameId = vg.VideoGameId";
 
-                    cmd.CommandText = "SELECT UserId, User_VideoGame_id, Plateform_VideoGameId FROM USER_VIDEOGAME";
+                    cmd.CommandText = "SELECT UserId, User_VideoGame_id, VideoGameId FROM USER_VIDEOGAME";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -39,7 +39,7 @@ namespace DAL.Repository
                             {
                                 User_VideoGame_id = (int)reader["User_VideoGame_id"],
                                 UserId = (int)reader["UserId"],
-                                Plateform_VideoGame_Id = (int)reader["Plateform_VideoGameId"],
+                                VideoGameId = (int)reader["VideoGameId"],
                                 //UserName = (string)reader["UserName"],
                                 //VideoGameName = (string)reader["Name"],
                                 //PlateformName = (string)reader["PlateformName"],
@@ -52,7 +52,36 @@ namespace DAL.Repository
             }
         }
 
-        
+        public IEnumerable<User_VideoGame> GetOne(int id)
+        {
+            using (_connection)
+            {
+                _connection.Open();
+
+                using (SqlCommand cmd = _connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT UserId, User_VideoGame_id, VideoGameId" +
+                        " FROM USER_VIDEOGAME WHERE UserId=@id";
+
+                    cmd.Parameters.AddWithValue("id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            yield return new User_VideoGame
+                            {
+                                User_VideoGame_id = (int)reader["User_VideoGame_id"],
+                                UserId = (int)reader["UserId"],
+                                VideoGameId = (int)reader["VideoGameId"]
+                            };
+                        }
+                    }
+                }
+            }
+        }
+
+
 
         public IEnumerable<VideoGame> GetVideoGameByUserId(int id)
         {
@@ -64,13 +93,12 @@ namespace DAL.Repository
                 {
                     cmd.CommandText = "SELECT vg.VideoGameId, vg.Name, vg.[Description]," +
                         " vg.ReleaseDate, vg.DeveloperId, vg.PublisherId, vg.JacketUrl" +
-                        " FROM USER_VIDEOGAME uv JOIN PLATEFORM_VIDEOGAME pl" +
-                        " ON uv.Plateform_VideoGameId = pl.Id JOIN VIDEOGAME vg ON" +
-                        " pl.VideoGameId = vg.VideoGameId WHERE uv.UserId = @id";
+                        " FROM USER_VIDEOGAME uv JOIN VIDEOGAME vg" +
+                        " ON uv.VideoGameId = vg.VideoGameId WHERE uv.UserId = @id";
 
                     cmd.Parameters.AddWithValue("id", id);
 
-                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -138,11 +166,11 @@ namespace DAL.Repository
 
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = " INSERT INTO USER_VIDEOGAME (UserId, Plateform_VideoGameId)" +
-                        " OUTPUT inserted.User_VideoGame_id VALUES (@UId, @PlVgId)";
+                    cmd.CommandText = " INSERT INTO USER_VIDEOGAME (UserId, VideoGameId)" +
+                        " OUTPUT inserted.User_VideoGame_id VALUES (@UId, @VgId)";
 
                     cmd.Parameters.AddWithValue("UId", user_VideoGame.UserId);
-                    cmd.Parameters.AddWithValue("PlVgId", user_VideoGame.Plateform_VideoGame_Id);
+                    cmd.Parameters.AddWithValue("VgId", user_VideoGame.VideoGameId);
 
 
                     int id = (int)cmd.ExecuteScalar();
@@ -159,11 +187,11 @@ namespace DAL.Repository
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
                     cmd.CommandText = "UPDATE USER_VIDEOGAME SET UserId = @UId," +
-                        " Plateform_VideoGameId = @PlVgId" +
+                        " Plateform_VideoGameId = @VgId" +
                         " WHERE User_VideoGame_id = @id";
 
                     cmd.Parameters.AddWithValue("UId", user_VideoGame.UserId);
-                    cmd.Parameters.AddWithValue("PlVgId", user_VideoGame.Plateform_VideoGame_Id);
+                    cmd.Parameters.AddWithValue("VgId", user_VideoGame.VideoGameId);
                     cmd.Parameters.AddWithValue("id", user_VideoGame.User_VideoGame_id);
 
                     cmd.ExecuteNonQuery();

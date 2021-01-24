@@ -8,7 +8,9 @@ namespace LOCAL.Interface
     {
         IEnumerable<User_VideoGame> Get();
 
-        User GetVideoGameByUserId(int id);
+        IEnumerable<User_VideoGame> GetOne(int id);
+
+        IEnumerable<VideoGame> GetVideoGameByUserId(int id);
 
         void Insert(User_VideoGame user_VideoGame);
 
