@@ -13,6 +13,7 @@ namespace DAL.Repository
         {
 
         }
+        public int x;
 
 
         public IEnumerable<Report> Get()
