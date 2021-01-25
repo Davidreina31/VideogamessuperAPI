@@ -22,9 +22,9 @@ namespace VIDEOGAMESSUPER.Controllers
 
         // GET: api/values
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetOneUser(int id)
         {
-            return Ok(_service.Get());
+            return Ok(_service.GetOne(id));
         }
 
         // GET api/values/5
