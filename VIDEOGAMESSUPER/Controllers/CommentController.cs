@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LOCAL.Interface;
 using LOCAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -36,6 +37,7 @@ namespace VIDEOGAMESSUPER.Controllers
 
         // POST api/values
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] Comment comment)
         {
             _service.Insert(comment);
@@ -44,6 +46,7 @@ namespace VIDEOGAMESSUPER.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put([FromBody] Comment comment)
         {
             _service.Update(comment);
@@ -52,6 +55,7 @@ namespace VIDEOGAMESSUPER.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             _service.Delete(id);
