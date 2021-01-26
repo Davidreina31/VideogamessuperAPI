@@ -6,6 +6,8 @@ namespace LOCAL.Interface
 {
     public interface IUserService
     {
+        User CorrectUser(string email, string password);
+
         IEnumerable<User> Get();
 
         User Get(int id);

@@ -6,6 +6,8 @@ namespace DAL.Interface
 {
     public interface IUserRepository
     {
+        User CorrectUser(string email, string password);
+
         IEnumerable<User> Get();
 
         User Get(int id);

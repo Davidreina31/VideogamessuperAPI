@@ -15,6 +15,38 @@ namespace DAL.Repository
         {
         }
 
+        
+        public User CorrectUser(string email, string password)
+        {
+            User user = new User();
+            using (_connection)
+            {
+                _connection.Open();
+
+                using(SqlCommand cmd = _connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT UserId, UserName, [Admin]" +
+                        " FROM [USER]" +
+                        " WHERE Email=@email AND PasswordHash=@pwd";
+
+                    cmd.Parameters.AddWithValue("email", email);
+                    cmd.Parameters.AddWithValue("pwd", password);
+
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            user.UserId = (int)reader["UserId"];
+                            user.UserName = (string)reader["UserName"];
+                            user.Admin = (bool)reader["Admin"];
+                        }
+
+                        return user;
+                    }
+                }
+            }
+        }
+
 
         public IEnumerable<User> Get()
         {

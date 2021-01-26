@@ -16,7 +16,12 @@ namespace LOCAL.Services
         {
             _userRepo = userRepo;
         }
-        
+
+        public User CorrectUser(string email, string password)
+        {
+            return _userRepo.CorrectUser(email, password).toLocal();
+        }
+
 
         public IEnumerable<User> Get()
         {
