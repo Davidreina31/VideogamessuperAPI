@@ -56,11 +56,11 @@ namespace VIDEOGAMESSUPER.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        [Authorize]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        
+        public IActionResult Delete(int UserId, int VideoGameId)
         {
-            _service.Delete(id);
+            _service.Delete(UserId, VideoGameId);
             return Ok();
         }
     }

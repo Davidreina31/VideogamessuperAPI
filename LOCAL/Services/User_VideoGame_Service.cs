@@ -51,9 +51,9 @@ namespace LOCAL.Services
             _UvRepo.Update(user_VideoGame.toDal());
         }
 
-        public void Delete(int id)
+        public void Delete(int UserId, int VideoGameId)
         {
-            _UvRepo.Delete(id);
+            _UvRepo.Delete(UserId, VideoGameId);
         }
     }
 }

@@ -16,6 +16,6 @@ namespace LOCAL.Interface
 
         void Update(User_VideoGame user_VideoGame);
 
-        void Delete(int id);
+        void Delete(int UserId, int VideoGameId);
     }
 }

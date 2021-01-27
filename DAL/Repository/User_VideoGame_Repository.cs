@@ -199,7 +199,7 @@ namespace DAL.Repository
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int UserId, int VideoGameId)
         {
             using (_connection)
             {
@@ -207,10 +207,10 @@ namespace DAL.Repository
 
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM USER_VIDEOGAME" +
-                        " WHERE User_VideoGame_id = @id";
+                    cmd.CommandText = "delete from USER_VIDEOGAME WHERE UserId =@userId and VideoGameId=@videoGameId";
 
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("userId", UserId);
+                    cmd.Parameters.AddWithValue("videoGameId", VideoGameId);
 
                     cmd.ExecuteNonQuery();
                 }
