@@ -7,6 +7,6 @@ namespace DAL.Interface
     public interface IPlateform_VideoGameRepository
     {
         IEnumerable<Plateform_VideoGame> Get();
-        Plateform_VideoGame Get(int id);
+        IEnumerable<Plateform> GetByVideoGameId(int id);
     }
 }

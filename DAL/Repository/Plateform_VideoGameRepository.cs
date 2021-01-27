@@ -40,7 +40,7 @@ namespace DAL.Repository
             }
         }
 
-        public Plateform_VideoGame Get(int id)
+        public IEnumerable<Plateform> GetByVideoGameId(int id)
         {
             Plateform_VideoGame plateform_VideoGame = new Plateform_VideoGame();
             using (_connection)
@@ -49,8 +49,9 @@ namespace DAL.Repository
 
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT Id, VideoGameId, PlateformId" +
-                        " FROM PLATEFORM_VIDEOGAME WHERE Id = @id";
+                    cmd.CommandText = "SELECT pl.PlateformId, pl.PlateformName" +
+                        " FROM PLATEFORM pl JOIN PLATEFORM_VIDEOGAME plvg ON plvg.PlateformId = pl.PlateformId" +
+                        " WHERE plvg.VideoGameId =@id";
 
                     cmd.Parameters.AddWithValue("id", id);
 
@@ -58,12 +59,14 @@ namespace DAL.Repository
                     {
                         while (reader.Read())
                         {
-                            plateform_VideoGame.Plateform_VideoGameId = (int)reader["Id"];
-                            plateform_VideoGame.VideoGameId = (int)reader["VideoGameId"];
-                            plateform_VideoGame.PlateformId = (int)reader["PlateformId"];
+                            yield return new Plateform
+                            {
+                                PlateformId = (int)reader["PlateformId"],
+                                PlateformName = (string)reader["PlateformName"]
+                            };
+                            
                         }
 
-                        return plateform_VideoGame;
                     }
                 }
             }

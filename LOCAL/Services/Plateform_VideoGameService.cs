@@ -22,9 +22,9 @@ namespace LOCAL.Services
             return _plateform_VideoGameRepo.Get().Select(x => x.toLocal());
         }
 
-        public Plateform_VideoGame Get(int id)
+        public IEnumerable<Plateform> GetByVideoGameId(int id)
         {
-            return _plateform_VideoGameRepo.Get(id).toLocal();
+            return _plateform_VideoGameRepo.GetByVideoGameId(id).Select(x => x.toLocal());
         }
     }
 }

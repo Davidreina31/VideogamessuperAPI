@@ -29,7 +29,7 @@ namespace VIDEOGAMESSUPER.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(_plateform_VideoGameservice.Get(id));
+            return Ok(_plateform_VideoGameservice.GetByVideoGameId(id));
         }
 
         //// POST api/values

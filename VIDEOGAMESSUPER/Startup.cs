@@ -62,9 +62,17 @@ namespace VIDEOGAMESSUPER
 
             services.AddScoped<ICommentService, CommentService>();
 
+            services.AddScoped<IDeveloperRepository, DeveloperRepository>();
+
+            services.AddScoped<IDeveloperService, DeveloperService>();
+
             services.AddScoped<IPlateform_VideoGameRepository, Plateform_VideoGameRepository>();
 
             services.AddScoped<IPlateform_VideoGameService, Plateform_VideoGameService>();
+
+            services.AddScoped<IPublisherRepository, PublisherRepository>();
+
+            services.AddScoped<IPublisherService, PublisherService>();
 
             services.AddScoped<IQuestionRepository, QuestionRepository>();
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace LOCAL.Models
 {
     public class VideoGame
@@ -19,7 +21,9 @@ namespace LOCAL.Models
 
         public Developer Developer { get; set; }
 
-        //public Publisher Publisher { get; set; }
+        public Publisher Publisher { get; set; }
+
+        public IEnumerable<Plateform> plateforms { get; set; }
 
     }
 }
