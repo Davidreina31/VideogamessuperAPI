@@ -49,7 +49,7 @@ namespace DAL.Repository
 
                 using (SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT pl.PlateformId, pl.PlateformName" +
+                    cmd.CommandText = "SELECT pl.PlateformId, pl.Name" +
                         " FROM PLATEFORM pl JOIN PLATEFORM_VIDEOGAME plvg ON plvg.PlateformId = pl.PlateformId" +
                         " WHERE plvg.VideoGameId =@id";
 
@@ -62,7 +62,7 @@ namespace DAL.Repository
                             yield return new Plateform
                             {
                                 PlateformId = (int)reader["PlateformId"],
-                                PlateformName = (string)reader["PlateformName"]
+                                PlateformName = (string)reader["Name"]
                             };
                             
                         }

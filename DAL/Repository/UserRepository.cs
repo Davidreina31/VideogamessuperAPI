@@ -168,7 +168,13 @@ namespace DAL.Repository
 
                 using(SqlCommand cmd = _connection.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM [USER] WHERE UserId = @id";
+                    
+                    cmd.CommandText = "DELETE FROM ANSWER WHERE UserId = @id ";
+                    cmd.CommandText += "DELETE FROM QUESTION WHERE UserId = @id ";
+                    cmd.CommandText += "DELETE FROM REPORT WHERE ReporterUserId = @id ";
+                    cmd.CommandText += "DELETE FROM COMMENT WHERE UserId = @id ";
+                    cmd.CommandText += "DELETE FROM User_VideoGame WHERE UserId = @id ";
+                    cmd.CommandText += "DELETE FROM [USER] WHERE UserId = @id ";
 
                     cmd.Parameters.AddWithValue("id", id);
 
